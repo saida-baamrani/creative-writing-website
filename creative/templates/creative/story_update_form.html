@@ -1,0 +1,55 @@
+
+
+{% extends 'menu.html' %}
+{% block stories %}
+		<li class="nav-item active ">
+      
+{% endblock %}
+{% block home%}
+		<li class="nav-item  ">
+      
+{% endblock %}
+{% block body %}
+		<div class="container" id="container" style="margin-left: 30% ; margin-top: 50px">
+
+	<div class="avatar" style="margin-left:15%">
+	                    <img src="{{ story.image.url }}" style="border-radius: 50%;width: 300px; margin-top: 30px ;">
+	        </div>	
+			
+	 <div class="row" >
+	<div class="col" style="margin-left:  30px;">    
+	<form method="post" enctype="multipart/form-data">
+		<div class="avatar">
+	                    <img alt="" src={{form.image.url}}}>
+	    </div>
+	    {% csrf_token %}
+	    {% for field in form %}
+	  <div class="form-group row">
+	    <label for="inputEmail3" class="col-sm-2 control-label ">{{ field.label_tag }}</label>
+	    <div class="col-sm-10  ">
+	      {{ field}}
+	    </div>
+	  </div>
+	  
+	    {% endfor %}
+	  <div class="form-group row">
+	    <div class="col-sm-10" style="margin-left: 15%">
+	      <button type="submit" class="btn btn-primary">save changes</button>
+	    </div>
+	  </div>
+	</form>
+	</div>
+	</div>
+	<div style="margin-left:  10%">
+{% for chapter in story.get_chapter %}
+   <a href="{% url 'update-chapter' chapter.id %}" > <strong>Chapter :&ensp;{{ forloop.counter }}&ensp;{{ chapter.title_chap}}<br> </a></strong> 
+
+{% empty %}
+    <p>No comments here yet :(</p>
+{% endfor %}
+<br>
+<button><a href="{% url 'add-chapter' story.id %}">add new chapter</a></button>
+</div>
+	</div>
+
+{% endblock %}

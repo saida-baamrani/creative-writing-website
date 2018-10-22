@@ -1,0 +1,15 @@
+
+{% extends 'menu.html' %}
+
+{% block body %}
+<div style="margin-left:  30%">
+<h1>{{ chapter.title_chap}}</h1>
+<br>
+<br> 
+<p>{{ chapter.content}}</p>
+<br>
+<br> 
+
+<a href="{% url 'story-detail' chapter.get_story %}" > <strong>go back to chapters lit<br> </a></strong> 
+</div>
+{% endblock %}
